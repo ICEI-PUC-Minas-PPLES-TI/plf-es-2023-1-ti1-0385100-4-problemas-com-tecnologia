@@ -1,0 +1,14 @@
+
+tasks:
+  - name: vscode
+    before: |
+      mkdir /workspace/4-problemas-com-tecnologia/.vscode/
+      touch /workspace/4-problemas-com-tecnologia/.vscode/settings.json
+      echo "{\"workbench.colorTheme\": \"Gitpod Dark\"}" >> /workspace/4-problemas-com-tecnologia/.vscode/settings.json
+
+vscode:
+  extensions:
+    - eamodio.gitlens
+    - yzhang.markdown-all-in-one
+    - DavidAnson.vscode-markdownlint
+    - esbenp.prettier-vscode

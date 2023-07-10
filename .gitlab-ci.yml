@@ -1,0 +1,60 @@
+# This file is a template, and might need editing before it works on your project.
+# This is a sample GitLab CI/CD configuration file that should run without any modifications.
+# It demonstrates a basic 3 stage CI/CD pipeline. Instead of real tests or scripts,
+# it uses echo commands to simulate the pipeline execution.
+#
+# A pipeline is composed of independent jobs that run scripts, grouped into stages.
+# Stages run in sequential order, but jobs within stages run in parallel.
+#
+# For more information, see: https://docs.gitlab.com/ee/ci/yaml/index.html#stages
+#
+# You can copy and paste this template into a new `.gitlab-ci.yml` file.
+# You should not add this template to an existing `.gitlab-ci.yml` file by using the `include:` keyword.
+#
+# To contribute improvements to CI/CD templates, please follow the Development guide at:
+# https://docs.gitlab.com/ee/development/cicd/templates.html
+# This specific template is located at:
+# https://gitlab.com/gitlab-org/gitlab/-/blob/master/lib/gitlab/ci/templates/Getting-Started.gitlab-ci.yml
+
+stages:          # List of stages for jobs, and their order of execution
+  - deploy
+
+deploy-job:      # This job runs in the deploy stage.
+  image: debian:latest
+  tags:
+    - docker
+    - x86-64
+  stage: deploy  # It only runs when *both* jobs in the test stage complete successfully.
+  variables:
+         SECURE_FILES_DOWNLOAD_PATH: './ssh/'
+  script:
+      - apt-get update
+      - apt-get install openssh-client wget ssh curl rsync git -y
+      - wget 'https://git.al3xdev.com/puc/4-problemas-com-tecnologia/-/snippets/2/raw/main/header-github.md?inline=false' -O ./header-github.md
+      - mv ./README.md ./README.md.tmp
+      - touch ./README.md
+      - cat ./header-github.md >> ./README.md
+      - cat ./README.md.tmp >> ./README.md
+      - rm -r ./README.md.tmp ./header-github.md
+      - mkdir ./ssh
+      - mkdir ./nodeping
+      - curl --silent "https://gitlab.com/gitlab-org/incubation-engineering/mobile-devops/download-secure-files/-/raw/main/installer" | bash
+      - chmod -R 600 ./ssh
+      - mkdir -p ~/.ssh/
+      - cp ./ssh/id_rsa ~/.ssh/
+      - cp ./ssh/known_hosts ~/.ssh/
+      - cp ./ssh/id_rsa.pub ~/.ssh/
+      - rm -r ./ssh
+      - git remote remove origin
+      - rm -rf ./.git
+      - git init -q
+      - git config --global user.name "AL3XDev GitLab CI/CD"
+      - git config --global user.email "support@al3xdev.com"
+      - git remote add origin git@github.com:ICEI-PUC-Minas-PPLES-TI/plf-es-2023-1-ti1-0385100-4-problemas-com-tecnologia.git
+      - git add .
+      - git commit -m "GitLab CI/CD push to GitHub"
+      - git push -f origin master
+      - wget 'https://git.al3xdev.com/puc/4-problemas-com-tecnologia/-/snippets/3/raw/main/matterbridge.sh'
+      - chmod +x ./matterbridge.sh
+      - cat ./matterbridge.sh
+      - bash ./matterbridge.sh

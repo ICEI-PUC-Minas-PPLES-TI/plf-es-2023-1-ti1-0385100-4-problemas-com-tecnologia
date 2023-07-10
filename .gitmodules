@@ -1,0 +1,9 @@
+[submodule "codigo/LibrePass"]
+	path = codigo/LibrePass
+	url = https://git.al3xdev.com/puc/problemas-com-tecnologia/sprint-4-password-managing.git
+[submodule "codigo/cryptolib"]
+	path = codigo/cryptolib
+	url = https://git.al3xdev.com/puc/problemas-com-tecnologia/cryptolib.git
+[submodule "codigo/pwgenlib"]
+	path = codigo/pwgenlib
+	url = https://git.al3xdev.com/puc/problemas-com-tecnologia/pwgenlib.git
