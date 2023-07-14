@@ -1,22 +1,28 @@
 cff-version: 1.0.1
 message: Please cite this software using these metadata.
-title: 
+title: LibrePass - Password Manag
 authors:
-  - family-names: 
-    given-names: 
-  - family-names: 
-    given-names: 
-  - family-names: 
-    given-names: 
-  - family-names: 
-    given-names: 
-  - family-names: 
-    given-names: 
-  - family-names: 
-    given-names:
+  - family-names: Breedbeld
+    given-names: Alexandre
+  - family-names: Nébias
+    given-names: Felipe
+  - family-names: Alongi
+    given-names: Guilherme
+  - family-names: Olívia
+    given-names: Mariana
+  - family-names: Almeida
+    given-names: Nicolas
+  - name-suffix: Professor
+    affiliation: PUC Minas
+    family-names: Soares Vieira de Vasconcelos
+    given-names: Amália
+  - name-suffix: Professor
+    affiliation: PUC Minas
+    family-names: Vieira Carneiro
+    given-names: Rommel
 keywords:
-  - 
-  - 
+  - segurança 
+  - criptografia
 repository-code: 
 license: gpl-3.0
 version: 1.0.0
